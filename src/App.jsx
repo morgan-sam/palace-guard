@@ -1,9 +1,10 @@
 import "App.css";
+import MenuButton from "components/MenuButton";
 
 function App() {
   return (
     <div className="App">
-      <h1>Start</h1>
+      <MenuButton text="Start" />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
         sagittis et ante ut lacinia. Donec porta metus vel erat egestas, non
