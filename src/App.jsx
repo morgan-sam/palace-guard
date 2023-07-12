@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <MenuButton text="Start" />
-      <p>
+      <p className="leading-none	">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
         sagittis et ante ut lacinia. Donec porta metus vel erat egestas, non
         feugiat sapien bibendum. Nunc magna ex, tempus et volutpat vitae, congue
