@@ -6,7 +6,10 @@ const NavigationButtons = ({ screenID, setScreenID }) => {
       {screenID > 0 && (
         <NavButton text="Previous" onClick={() => setScreenID(screenID - 1)} />
       )}
-      <NavButton text={"Next"} onClick={() => setScreenID(screenID + 1)} />
+      <NavButton
+        text={screenID > 0 ? "Next" : "Start"}
+        onClick={() => setScreenID(screenID + 1)}
+      />
     </div>
   );
 };

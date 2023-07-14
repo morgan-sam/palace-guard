@@ -14,9 +14,8 @@ function App() {
     case 0:
       currentScreen = (
         <>
-          <ButtonContainer>
-            <MenuButton text={"Start"} onClick={() => setScreenID(1)} />
-          </ButtonContainer>
+          <h1>Place Guard</h1>
+          <NavButtons {...{ screenID, setScreenID }} />
         </>
       );
       break;
