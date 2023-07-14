@@ -47,12 +47,14 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4 max-h-full">
+    <div className="grid grid-cols-2 max-h-full">
       <img src={face_a3} alt="castle" className="max-h-80 max-w-80" />
       <div className="flex flex-col items-start text-left max-h-full overflow-y-scroll">
         {dialogue}
       </div>
-      <div>Disposition</div>
+      <h3 className="text-3xl flex justify-center items-center">
+        Disposition: 50
+      </h3>
       <form onSubmit={handleSubmit} className="flex h-15">
         <div className="border-double border-4 border-black bg-white w-full m-0">
           <textarea

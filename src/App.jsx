@@ -57,7 +57,7 @@ function App() {
       {screenID}
       <div
         id="game-container"
-        className="h-[75%] w-3/4 border-double border-8 border-black bg-white flex items-center	justify-center flex-col p-4 box-content"
+        className="max-h-[75%] max-w-3/4 border-double border-8 border-black bg-white flex items-center	justify-center flex-col p-4 box-content"
       >
         {currentScreen}
       </div>
