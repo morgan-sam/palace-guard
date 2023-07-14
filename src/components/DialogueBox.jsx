@@ -12,9 +12,7 @@ const DialogueBox = () => {
   return (
     <div className="flex">
       <img src={face_a3} alt="castle" className="h-80 w-80 mr-4" />
-      <div className="flex flex-col">
-        <Chatbot />
-      </div>
+      <Chatbot />
     </div>
   );
 };

@@ -45,14 +45,14 @@ const Chatbot = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col max-w-[50%] justify-between">
       <div className="flex flex-col items-start text-left">{dialogue}</div>
       <div>
         <form onSubmit={handleSubmit}>
           <textarea
             type="text"
             value={prompt}
-            placeholder="Please ask to openai"
+            placeholder="Enter your dialogue here."
             onChange={(e) => setPrompt(e.target.value)}
           ></textarea>
           <button disabled={loading || prompt.length === 0} type="submit">
@@ -60,7 +60,7 @@ const Chatbot = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
