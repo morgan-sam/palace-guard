@@ -1,6 +1,6 @@
 import "App.css";
 import ButtonContainer from "components/ButtonContainer";
-import MenuButton from "components/MenuButton";
+import DialogueBox from "components/DialogueBox";
 import NavButtons from "components/NavButtons";
 import { useState } from "react";
 import castle1 from "images/castle/1.jpg";
@@ -49,6 +49,13 @@ function App() {
             walks towards you and begins to speak...
           </Paragraph>
           <NavButtons {...{ screenID, setScreenID }} />
+        </>
+      );
+      break;
+    case 3:
+      currentScreen = (
+        <>
+          <DialogueBox />
         </>
       );
       break;
