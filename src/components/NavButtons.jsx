@@ -1,8 +1,10 @@
 import Button from "components/Button";
 
-const NavigationButtons = ({ screenID, setScreenID }) => {
+const NavigationButtons = ({ className, screenID, setScreenID }) => {
   return (
-    <div className="border-double border-4 border-black bg-white w-fit">
+    <div
+      className={`border-double border-4 border-black bg-white w-fit h-fit ${className}`}
+    >
       {screenID > 0 && (
         <Button text="Previous" onClick={() => setScreenID(screenID - 1)} />
       )}
