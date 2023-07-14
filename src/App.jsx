@@ -14,7 +14,7 @@ function App() {
     case 0:
       currentScreen = (
         <>
-          <h1>Place Guard</h1>
+          <h1>Palace Guard</h1>
           <NavButtons {...{ screenID, setScreenID }} />
         </>
       );
