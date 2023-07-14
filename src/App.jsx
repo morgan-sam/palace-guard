@@ -11,6 +11,7 @@ function App() {
   const [screenID, setScreenID] = useState(0);
   let currentScreen = null;
   switch (screenID) {
+    default:
     case 0:
       currentScreen = (
         <>
@@ -31,7 +32,7 @@ function App() {
         </>
       );
       break;
-    default:
+    case 2:
       currentScreen = (
         <>
           <img src={guards1} alt="guards" className="h-1/2 " />
