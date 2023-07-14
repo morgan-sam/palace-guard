@@ -3,6 +3,8 @@ import ButtonContainer from "components/ButtonContainer";
 import MenuButton from "components/MenuButton";
 import NavButtons from "components/NavButtons";
 import { useState } from "react";
+import castle1 from "images/castle/1.jpg";
+import Paragraph from "components/Paragraph";
 
 function App() {
   const [screenID, setScreenID] = useState(0);
@@ -20,7 +22,11 @@ function App() {
     case 1:
       currentScreen = (
         <>
-          screen2
+          <img src={castle1} alt="castle" className="h-1/2 w-1/2" />
+          <Paragraph>
+            You spend many weeks travelling to the castle. You finally see it
+            emerge on the horizon.
+          </Paragraph>
           <NavButtons {...{ screenID, setScreenID }} />
         </>
       );
@@ -28,12 +34,12 @@ function App() {
     default:
       currentScreen = (
         <>
-          <p className="leading-none	bg-white">
+          <Paragraph>
             I understand your enthusiasm, but I must adhere to the rules and
             regulations. Unauthorized access to the king is strictly prohibited.
             I appreciate your understanding in this matter. Is there anything
             else I can assist you with?
-          </p>
+          </Paragraph>
           <NavButtons {...{ screenID, setScreenID }} />
         </>
       );
