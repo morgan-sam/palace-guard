@@ -25,8 +25,13 @@ function App() {
         <>
           <img src={castle1} alt="castle" className="h-1/2 w-1/2" />
           <Paragraph>
-            You spend many weeks travelling to the castle. You finally see it
-            emerge on the horizon.
+            You set out on your travels optimistic, enthusiastic for your royal
+            duties. The journey is a treacherous one, following the map given to
+            you by the royal scribe. As the weeks pass you grow weary and doubt
+            begins to plague your mind. Many times you become lost, and it
+            becomes apparent that you might never make the journey. Just as hope
+            starts to wane you finally see the castle emerge on the horizon. You
+            follow the trail that leads up to the entrance.
           </Paragraph>
           <NavButtons {...{ screenID, setScreenID }} />
         </>
