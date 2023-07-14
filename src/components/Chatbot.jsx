@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import Paragraph from "./Paragraph";
 import Button from "./Button";
+import face_a3 from "images/faces/a3.jpg";
 
 const Chatbot = () => {
   const configuration = new Configuration({
@@ -46,10 +47,14 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="flex flex-col max-w-[50%] justify-between ">
-      <div className="flex flex-col items-start text-left">{dialogue}</div>
-      <form onSubmit={handleSubmit} className="flex">
-        <div className="border-double border-4 border-black bg-white w-full h-20 m-0">
+    <div className="grid grid-cols-2 gap-4 max-h-full">
+      <img src={face_a3} alt="castle" className="max-h-80 max-w-80" />
+      <div className="flex flex-col items-start text-left max-h-full overflow-y-scroll">
+        {dialogue}
+      </div>
+      <div>Diposition</div>
+      <form onSubmit={handleSubmit} className="flex h-15">
+        <div className="border-double border-4 border-black bg-white w-full m-0">
           <textarea
             style={{ resize: "none" }}
             className="border-double border-4 border-black bg-white w-full h-full p-1 leading-3 m-0"

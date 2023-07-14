@@ -9,12 +9,7 @@ import face_a5 from "images/faces/a5.jpg";
 import Chatbot from "./Chatbot";
 
 const DialogueBox = () => {
-  return (
-    <div className="flex">
-      <img src={face_a3} alt="castle" className="h-80 w-80 mr-4" />
-      <Chatbot />
-    </div>
-  );
+  return <Chatbot />;
 };
 
 export default DialogueBox;
