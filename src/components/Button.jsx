@@ -1,4 +1,4 @@
-const NavButton = ({ onClick, text }) => {
+const Button = ({ onClick, text }) => {
   return (
     <button
       onClick={onClick}
@@ -9,4 +9,4 @@ const NavButton = ({ onClick, text }) => {
   );
 };
 
-export default NavButton;
+export default Button;

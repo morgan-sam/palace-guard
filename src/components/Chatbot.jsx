@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import Paragraph from "./Paragraph";
+import Button from "./Button";
 
 const Chatbot = () => {
   const configuration = new Configuration({
@@ -45,21 +46,27 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="flex flex-col max-w-[50%] justify-between">
+    <div className="flex flex-col max-w-[50%] justify-between ">
       <div className="flex flex-col items-start text-left">{dialogue}</div>
-      <div>
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex">
+        <div className="border-double border-4 border-black bg-white w-full h-20 m-0">
           <textarea
+            style={{ resize: "none" }}
+            className="border-double border-4 border-black bg-white w-full h-full p-1 leading-3 m-0"
             type="text"
             value={prompt}
             placeholder="Enter your dialogue here."
             onChange={(e) => setPrompt(e.target.value)}
           ></textarea>
-          <button disabled={loading || prompt.length === 0} type="submit">
-            {loading ? "Generating..." : "Generate"}
-          </button>
-        </form>
-      </div>
+        </div>
+        <div className="border-double border-4 border-black bg-white w-fit h-fit">
+          <Button
+            disabled={loading || prompt.length === 0}
+            type="submit"
+            text={loading ? "Generating..." : "Speak"}
+          />
+        </div>
+      </form>
     </div>
   );
 };
