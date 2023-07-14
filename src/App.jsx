@@ -5,6 +5,7 @@ import NavButtons from "components/NavButtons";
 import { useState } from "react";
 import castle1 from "images/castle/1.jpg";
 import Paragraph from "components/Paragraph";
+import guards1 from "images/guards/1.jpg";
 
 function App() {
   const [screenID, setScreenID] = useState(0);
@@ -34,11 +35,13 @@ function App() {
     default:
       currentScreen = (
         <>
+          <img src={guards1} alt="guards" className="h-1/2 " />
           <Paragraph>
-            I understand your enthusiasm, but I must adhere to the rules and
-            regulations. Unauthorized access to the king is strictly prohibited.
-            I appreciate your understanding in this matter. Is there anything
-            else I can assist you with?
+            As you approach the gates you see several guards standing watch.
+            They eye you suspiciously. You walk carefully towards them, not to
+            agitate them. Several archers line the walls with weapons drawn. You
+            raise your hands to show yourself as a non-threat. One of the guards
+            walks towards you and begins to speak...
           </Paragraph>
           <NavButtons {...{ screenID, setScreenID }} />
         </>
