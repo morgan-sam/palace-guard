@@ -52,7 +52,7 @@ const Chatbot = () => {
       <div className="flex flex-col items-start text-left max-h-full overflow-y-scroll">
         {dialogue}
       </div>
-      <div>Diposition</div>
+      <div>Disposition</div>
       <form onSubmit={handleSubmit} className="flex h-15">
         <div className="border-double border-4 border-black bg-white w-full m-0">
           <textarea
