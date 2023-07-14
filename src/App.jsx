@@ -1,6 +1,7 @@
 import "App.css";
+import ButtonContainer from "components/ButtonContainer";
 import MenuButton from "components/MenuButton";
-import NavigationButtons from "components/NavigationButtons";
+import NavButtons from "components/NavButtons";
 import { useState } from "react";
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
     case 0:
       currentScreen = (
         <>
-          <NavigationButtons {...{ screenID, setScreenID }} />
+          <ButtonContainer>
+            <MenuButton text={"Start"} onClick={() => setScreenID(1)} />
+          </ButtonContainer>
         </>
       );
       break;
@@ -18,20 +21,20 @@ function App() {
       currentScreen = (
         <>
           screen2
-          <NavigationButtons {...{ screenID, setScreenID }} />
+          <NavButtons {...{ screenID, setScreenID }} />
         </>
       );
       break;
     default:
       currentScreen = (
         <>
-          <NavigationButtons {...{ screenID, setScreenID }} />
           <p className="leading-none	bg-white">
             I understand your enthusiasm, but I must adhere to the rules and
             regulations. Unauthorized access to the king is strictly prohibited.
             I appreciate your understanding in this matter. Is there anything
             else I can assist you with?
           </p>
+          <NavButtons {...{ screenID, setScreenID }} />
         </>
       );
       break;
