@@ -8,7 +8,7 @@ import Paragraph from "components/Paragraph";
 import guards1 from "images/guards/1.jpg";
 
 function App() {
-  const [screenID, setScreenID] = useState(0);
+  const [screenID, setScreenID] = useState(3);
   let currentScreen = null;
   switch (screenID) {
     default:
@@ -66,7 +66,7 @@ function App() {
       {screenID}
       <div
         id="game-container"
-        class="h-[75%] w-3/4 border-double border-8 border-black bg-white flex items-center	justify-center flex-col p-4"
+        className="h-[75%] w-3/4 border-double border-8 border-black bg-white flex items-center	justify-center flex-col p-4"
       >
         {currentScreen}
       </div>
