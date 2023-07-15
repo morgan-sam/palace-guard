@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import Paragraph from "./Paragraph";
 import Button from "./Button";
-import face_a3 from "images/faces/a3.jpg";
 import { initialPrompt } from "data";
+import GuardFace from "./GuardFace";
 
 const Chatbot = () => {
   const configuration = new Configuration({
@@ -92,8 +92,6 @@ const Chatbot = () => {
     sendMessage();
   }, []);
 
-  console.log(loading);
-
   return (
     <div
       className="grid max-h-full h-full max-w-xl max-h-[22rem]"
@@ -102,11 +100,7 @@ const Chatbot = () => {
         gridAutoRows: "minmax(0, max-content)",
       }}
     >
-      <img
-        src={face_a3}
-        alt="castle"
-        className="h-full mx-auto object-contain"
-      />
+      <GuardFace {...{ disposition }} />
       <div className="flex flex-col items-start text-left max-h-full overflow-y-scroll ml-2 mb-2">
         {dialogue}
       </div>
