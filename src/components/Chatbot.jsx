@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import Paragraph from "./Paragraph";
 import Button from "./Button";
 import face_a3 from "images/faces/a3.jpg";
+import { initialPrompt } from "data";
 
 const Chatbot = () => {
   const configuration = new Configuration({
@@ -13,9 +14,10 @@ const Chatbot = () => {
 
   const openai = new OpenAIApi(configuration);
   const [prompt, setPrompt] = useState("");
-  const [dialogue, setDialogue] = useState(
-    <Paragraph>Guard: Halt! Who goes there?</Paragraph>
-  );
+  const [messages, setMessages] = useState([
+    { role: "system", content: initialPrompt },
+  ]);
+  const [dialogue, setDialogue] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const addToDialogue = (newDialogue) => {
@@ -30,21 +32,61 @@ const Chatbot = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    console.log("submit");
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setMessages((prev) => [...prev, { role: "user", content: prompt }]);
+  };
+
+  async function firstTimeLoad() {
     setLoading(true);
     try {
-      const result = await openai.createChatCompletion({
+      const response = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: prompt }],
+        messages,
       });
-      addToDialogue(result.data.choices[0].message.content);
+      const intialDialogue = response.data.choices[0].message.content;
+      setDialogue(<Paragraph>{intialDialogue}</Paragraph>);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: intialDialogue },
+      ]);
     } catch (e) {
       alert("Something is going wrong, Please try again.");
     }
     setLoading(false);
-  };
+  }
+
+  useEffect(() => {
+    firstTimeLoad();
+  }, []);
+
+  async function sendMessage() {
+    setLoading(true);
+    try {
+      const response = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages,
+      });
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: response.data.choices[0].message.content,
+        },
+      ]);
+      addToDialogue(response.data.choices[0].message.content);
+    } catch (e) {
+      alert("Something is going wrong, Please try again.");
+    }
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    console.log(messages);
+    if (messages[messages.length - 1].role === "user") {
+      sendMessage();
+    }
+  }, [messages]);
 
   return (
     <div
