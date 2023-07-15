@@ -33,11 +33,6 @@ const Chatbot = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setMessages((prev) => [...prev, { role: "user", content: prompt }]);
-  };
-
   const handleReply = (response) => {
     let reply = response.data.choices[0].message.content;
     const newDisposition = getDisposition(reply);
@@ -84,6 +79,7 @@ const Chatbot = () => {
   useEffect(() => {
     if (messages[messages.length - 1].role === "user") {
       sendMessage();
+      setPrompt("");
     }
   }, [messages]);
 
@@ -91,6 +87,18 @@ const Chatbot = () => {
     // first time load
     sendMessage();
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMessages((prev) => [...prev, { role: "user", content: prompt }]);
+  };
+
+  const textAreaEnterPress = (e) => {
+    if (e.keyCode == 13 && e.shiftKey == false) {
+      e.preventDefault();
+      setMessages((prev) => [...prev, { role: "user", content: prompt }]);
+    }
+  };
 
   return (
     <div
@@ -110,12 +118,14 @@ const Chatbot = () => {
       <form onSubmit={handleSubmit} className="flex h-15">
         <div className="border-double border-4 border-black bg-white w-full m-0">
           <textarea
+            onKeyDown={textAreaEnterPress}
             style={{ resize: "none" }}
-            className="border-double border-4 border-black bg-white w-full h-full p-1 leading-3 m-0"
+            className="border-double border-4 border-black bg-white w-full h-full p-1 leading-3 m-0 disabled:bg-gray-200 disabled:cursor-not-allowed"
             type="text"
             value={prompt}
             placeholder="Enter your dialogue here."
             onChange={(e) => setPrompt(e.target.value)}
+            disabled={loading}
           ></textarea>
         </div>
         <div className="border-double border-4 border-black bg-white w-fit h-fit">
