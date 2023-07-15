@@ -18,6 +18,7 @@ const Chatbot = () => {
     { role: "system", content: initialPrompt },
   ]);
   const [dialogue, setDialogue] = useState(null);
+  const [disposition, setDisposition] = useState(50);
   const [loading, setLoading] = useState(false);
 
   const addToDialogue = (newDialogue) => {
@@ -25,8 +26,8 @@ const Chatbot = () => {
       return (
         <>
           {prev}
-          <Paragraph>Courier: {prompt}</Paragraph>
-          <Paragraph>{newDialogue}</Paragraph>
+          {prompt && <Paragraph>Courier: {prompt}</Paragraph>}
+          <Paragraph>Guard: {newDialogue}</Paragraph>
         </>
       );
     });
@@ -37,28 +38,29 @@ const Chatbot = () => {
     setMessages((prev) => [...prev, { role: "user", content: prompt }]);
   };
 
-  async function firstTimeLoad() {
-    setLoading(true);
-    try {
-      const response = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages,
-      });
-      const intialDialogue = response.data.choices[0].message.content;
-      setDialogue(<Paragraph>{intialDialogue}</Paragraph>);
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: intialDialogue },
-      ]);
-    } catch (e) {
-      alert("Something is going wrong, Please try again.");
-    }
-    setLoading(false);
-  }
+  const handleReply = (response) => {
+    let reply = response.data.choices[0].message.content;
+    const newDisposition = getDisposition(reply);
+    setDisposition(newDisposition);
+    reply = reply.replace(`[${newDisposition}]`, "");
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        content: reply,
+      },
+    ]);
+    addToDialogue(reply);
+  };
 
-  useEffect(() => {
-    firstTimeLoad();
-  }, []);
+  const getDisposition = (replyString) => {
+    const regex = /\[(\d+)\]/g;
+    const newDisposition = replyString
+      .match(regex)[0]
+      .replace("[", "")
+      .replace("]", "");
+    return newDisposition;
+  };
 
   async function sendMessage() {
     setLoading(true);
@@ -67,14 +69,7 @@ const Chatbot = () => {
         model: "gpt-3.5-turbo",
         messages,
       });
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: response.data.choices[0].message.content,
-        },
-      ]);
-      addToDialogue(response.data.choices[0].message.content);
+      handleReply(response);
     } catch (e) {
       alert("Something is going wrong, Please try again.");
     }
@@ -82,11 +77,15 @@ const Chatbot = () => {
   }
 
   useEffect(() => {
-    console.log(messages);
     if (messages[messages.length - 1].role === "user") {
       sendMessage();
     }
   }, [messages]);
+
+  useEffect(() => {
+    // first time load
+    sendMessage();
+  }, []);
 
   return (
     <div
@@ -105,7 +104,7 @@ const Chatbot = () => {
         {dialogue}
       </div>
       <h3 className="text-3xl flex justify-center items-center">
-        Disposition: 50
+        Disposition: {disposition}
       </h3>
       <form onSubmit={handleSubmit} className="flex h-15">
         <div className="border-double border-4 border-black bg-white w-full m-0">
