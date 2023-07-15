@@ -4,6 +4,7 @@ import Paragraph from "./Paragraph";
 import Button from "./Button";
 import { initialPrompt } from "data";
 import GuardFace from "./GuardFace";
+import IntervalString from "./IntervalString";
 
 const Chatbot = () => {
   const configuration = new Configuration({
@@ -123,7 +124,7 @@ const Chatbot = () => {
             className="border-double border-4 border-black bg-white w-full h-full p-1 leading-3 m-0 disabled:bg-gray-200 disabled:cursor-not-allowed"
             type="text"
             value={prompt}
-            placeholder="Enter your dialogue here."
+            placeholder={loading ? "" : "Enter your dialogue here."}
             onChange={(e) => setPrompt(e.target.value)}
             disabled={loading}
           ></textarea>
@@ -133,7 +134,7 @@ const Chatbot = () => {
             className="w-24	disabled:bg-gray-200 disabled:cursor-not-allowed"
             disabled={loading}
             type="submit"
-            text={loading ? "..." : "Speak"}
+            text={loading ? <IntervalString /> : "Speak"}
           />
         </div>
       </form>
