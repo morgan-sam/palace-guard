@@ -47,9 +47,15 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 max-h-full">
-      <img src={face_a3} alt="castle" className="max-h-80 max-w-80" />
-      <div className="flex flex-col items-start text-left max-h-full overflow-y-scroll">
+    <div
+      className="grid max-h-full h-full max-w-xl"
+      style={{
+        gridTemplateColumns: "minmax(50%, 1fr) auto",
+        gridAutoRows: "minmax(0, max-content)",
+      }}
+    >
+      <img src={face_a3} alt="castle" className="h-full mx-auto" />
+      <div className="flex flex-col items-start text-left max-h-full overflow-y-scroll ml-2 mb-2">
         {dialogue}
       </div>
       <h3 className="text-3xl flex justify-center items-center">
