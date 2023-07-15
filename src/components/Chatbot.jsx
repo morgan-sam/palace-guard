@@ -55,10 +55,14 @@ const Chatbot = () => {
 
   const getDisposition = (replyString) => {
     const regex = /\[(\d+)\]/g;
-    const newDisposition = replyString
-      .match(regex)[0]
-      .replace("[", "")
-      .replace("]", "");
+    let newDisposition = replyString.match(regex)?.[0];
+    if (newDisposition) {
+      // Manipulate the extracted value
+      newDisposition = newDisposition.replace("[", "").replace("]", "");
+    } else {
+      // If extraction fails or value not found, use the old disposition value
+      newDisposition = disposition;
+    }
     return newDisposition;
   };
 
@@ -71,6 +75,7 @@ const Chatbot = () => {
       });
       handleReply(response);
     } catch (e) {
+      console.log(e);
       alert("Something is going wrong, Please try again.");
     }
     setLoading(false);
@@ -86,6 +91,8 @@ const Chatbot = () => {
     // first time load
     sendMessage();
   }, []);
+
+  console.log(loading);
 
   return (
     <div
@@ -119,9 +126,10 @@ const Chatbot = () => {
         </div>
         <div className="border-double border-4 border-black bg-white w-fit h-fit">
           <Button
-            disabled={loading || prompt.length === 0}
+            className="w-24	disabled:bg-gray-200 disabled:cursor-not-allowed"
+            disabled={loading}
             type="submit"
-            text={loading ? "Generating..." : "Speak"}
+            text={loading ? "..." : "Speak"}
           />
         </div>
       </form>
