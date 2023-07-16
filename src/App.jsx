@@ -3,6 +3,7 @@ import BackStory from "components/BackStory";
 import DialogueBox from "components/DialogueBox";
 import NavButtons from "components/NavButtons";
 import { useState } from "react";
+import letter1 from "images/letter/1.jpg";
 import castle1 from "images/castle/1.jpg";
 import guards1 from "images/guards/1.jpg";
 
@@ -21,6 +22,17 @@ function App() {
       break;
     case 1:
       currentScreen = (
+        <BackStory image={letter1} {...{ screenID, setScreenID }}>
+          You are a courier who has been given a contract by the local guild to
+          deliver a letter to the king. The contents of which you have no idea,
+          but you are under strict orders not to open it. The guild master
+          reiterates the utmost urgency it is placed in the king's, and only the
+          king's, hands before depart on your journey.
+        </BackStory>
+      );
+      break;
+    case 2:
+      currentScreen = (
         <BackStory image={castle1} {...{ screenID, setScreenID }}>
           You set out on your travels optimistic, enthusiastic for your royal
           duties. The journey is a treacherous one, following the map given to
@@ -32,7 +44,7 @@ function App() {
         </BackStory>
       );
       break;
-    case 2:
+    case 3:
       currentScreen = (
         <BackStory image={guards1} {...{ screenID, setScreenID }}>
           As you approach the gates you see several guards standing watch. They
@@ -43,7 +55,7 @@ function App() {
         </BackStory>
       );
       break;
-    case 3:
+    case 4:
       currentScreen = (
         <>
           <DialogueBox />
