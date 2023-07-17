@@ -5,13 +5,13 @@
 @font-face {
   font-family: "Heritage-Display";
   src: local("Heritage-Display"),
-    url(./fonts/Heritage-Display.woff) format("woff");
+    url(fonts/Heritage-Display.woff) format("woff");
   /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' */
 }
 @font-face {
   font-family: "Alkhemikal";
-  src: local("Alkhemikal"), url(./fonts/Alkhemikal.woff) format("woff");
+  src: local("Alkhemikal"), url(fonts/Alkhemikal.woff) format("woff");
   /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' */
 }

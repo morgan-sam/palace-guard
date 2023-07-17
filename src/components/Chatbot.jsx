@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import Paragraph from "./Paragraph";
-import Button from "./Button";
+import Paragraph from "components/Paragraph";
+import Button from "components/Button";
 import { initialPrompt } from "data";
-import GuardFace from "./GuardFace";
-import IntervalString from "./IntervalString";
+import GuardFace from "components/GuardFace";
+import IntervalString from "components/IntervalString";
 
 const Chatbot = () => {
   const configuration = new Configuration({
