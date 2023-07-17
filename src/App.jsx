@@ -1,6 +1,6 @@
 import "App.css";
 import BackStory from "components/BackStory";
-import DialogueBox from "components/DialogueBox";
+import Chatbot from "components/Chatbot";
 import NavButtons from "components/NavButtons";
 import { useState } from "react";
 import letter1 from "images/letter/1.jpg";
@@ -58,7 +58,7 @@ function App() {
     case 4:
       currentScreen = (
         <>
-          <DialogueBox />
+          <Chatbot />
         </>
       );
       break;
