@@ -114,7 +114,8 @@ const Chatbot = () => {
         {dialogue}
       </div>
       <h3 className="text-3xl flex justify-center items-center">
-        Disposition: {disposition}
+        <span className="font-['Heritage-Display']">Disposition:&nbsp;</span>
+        <span className="font-['Heritage-Display']">{disposition}</span>
       </h3>
       <form onSubmit={handleSubmit} className="flex h-15">
         <div className="border-double border-4 border-black bg-white w-full m-0">
