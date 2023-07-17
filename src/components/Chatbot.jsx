@@ -103,7 +103,7 @@ const Chatbot = () => {
 
   return (
     <div
-      className="grid max-h-full h-full max-w-xl max-h-[22rem]"
+      className="grid max-h-full h-full max-w-4xl max-h-[22rem]"
       style={{
         gridTemplateColumns: "minmax(50%, 1fr) minmax(50%, 1fr)",
         gridAutoRows: "minmax(0, max-content)",
