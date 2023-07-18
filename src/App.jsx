@@ -3,6 +3,8 @@ import BackStory from "components/BackStory";
 import Chatbot from "components/Chatbot";
 import NavButtons from "components/NavButtons";
 import { useState } from "react";
+import pattern from "images/pattern/1.jpg";
+import emblem from "images/emblem/3.png";
 import letter1 from "images/letter/1.jpg";
 import castle1 from "images/castle/1.jpg";
 import guards1 from "images/guards/1.jpg";
@@ -15,6 +17,7 @@ function App() {
     case 0:
       currentScreen = (
         <>
+          <img src={emblem} alt="castle" className="h-1/2 mx-auto" />
           <h1>Palace Guard</h1>
           <NavButtons {...{ screenID, setScreenID }} />
         </>
@@ -69,6 +72,14 @@ function App() {
       {screenID}
       <div
         id="game-container"
+        style={
+          screenID == 0
+            ? {
+                backgroundRepeat: "repeat",
+                background: `linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${pattern}) center/400px`,
+              }
+            : null
+        }
         className="max-h-[75%] max-w-[75%] border-double border-8 border-black bg-white flex items-center	justify-center flex-col p-4 box-content"
       >
         {currentScreen}
