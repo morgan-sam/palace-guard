@@ -76,7 +76,7 @@ function App() {
           screenID == 0
             ? {
                 backgroundRepeat: "repeat",
-                background: `linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${pattern}) center/400px`,
+                background: `linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url(${pattern}) center/600px`,
               }
             : null
         }
