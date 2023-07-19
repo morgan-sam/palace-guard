@@ -11,7 +11,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 
 import { Configuration, OpenAIApi } from "openai";
 
-const DialogueScreen = () => {
+const Game = () => {
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([
     { role: "system", content: initialPrompt },
@@ -147,4 +147,4 @@ const DialogueScreen = () => {
   );
 };
 
-export default DialogueScreen;
+export default Game;

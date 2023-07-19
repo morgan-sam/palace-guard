@@ -1,6 +1,6 @@
 import "App.css";
 import BackStory from "components/BackStory";
-import DialogueScreen from "components/DialogueScreen";
+import Game from "components/Game";
 import NavButtons from "components/NavButtons";
 import { useState } from "react";
 import pattern from "images/pattern/1.jpg";
@@ -63,7 +63,7 @@ function App() {
     case 4:
       currentScreen = (
         <>
-          <DialogueScreen />
+          <Game />
         </>
       );
       break;
