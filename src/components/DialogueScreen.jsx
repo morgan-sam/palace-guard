@@ -11,7 +11,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 
 import { Configuration, OpenAIApi } from "openai";
 
-const Chatbot = () => {
+const DialogueScreen = () => {
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([
     { role: "system", content: initialPrompt },
@@ -147,4 +147,4 @@ const Chatbot = () => {
   );
 };
 
-export default Chatbot;
+export default DialogueScreen;
