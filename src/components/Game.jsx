@@ -4,12 +4,10 @@ import Button from "components/Button";
 import { initialPrompt } from "data";
 import GuardFace from "components/GuardFace";
 import IntervalString from "components/IntervalString";
-import pattern from "images/pattern/1.jpg";
+import Disposition from "components/Disposition";
 
 import firebaseApp from "config/firebase";
 import { getFunctions, httpsCallable } from "firebase/functions";
-
-import { Configuration, OpenAIApi } from "openai";
 
 const Game = () => {
   const [prompt, setPrompt] = useState("");
@@ -115,12 +113,10 @@ const Game = () => {
       >
         {dialogue}
       </div>
-      <h3
+      <Disposition
+        {...{ disposition }}
         className={`text-3xl flex justify-center items-center ${borderString}`}
-      >
-        <span className="">Disposition:&nbsp;</span>
-        <span className="">{disposition}</span>
-      </h3>
+      />
       <form onSubmit={handleSubmit} className={`flex h-15 p-1 ${borderString}`}>
         <div className="border-double border-4 border-black bg-white w-full m-0">
           <textarea
