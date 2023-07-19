@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react";
-import { Configuration, OpenAIApi } from "openai";
 import Paragraph from "components/Paragraph";
 import Button from "components/Button";
 import { initialPrompt } from "data";
 import GuardFace from "components/GuardFace";
 import IntervalString from "components/IntervalString";
+import pattern from "images/pattern/1.jpg";
+
+import firebaseApp from "config/firebase";
+import { getFunctions, httpsCallable } from "firebase/functions";
+
+import { Configuration, OpenAIApi } from "openai";
 
 const Chatbot = () => {
-  const configuration = new Configuration({
-    organization: process.env.REACT_APP_OPENAI_ORGANIZATION,
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-  });
-  delete configuration.baseOptions.headers["User-Agent"];
-
-  const openai = new OpenAIApi(configuration);
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([
     { role: "system", content: initialPrompt },
@@ -22,20 +20,20 @@ const Chatbot = () => {
   const [disposition, setDisposition] = useState(50);
   const [loading, setLoading] = useState(false);
 
-  const addToDialogue = (newDialogue) => {
+  const addToDialogue = (newDialogue, speakerName) => {
     setDialogue((prev) => {
       return (
         <>
           {prev}
-          {prompt && <Paragraph>Courier: {prompt}</Paragraph>}
-          <Paragraph>Guard: {newDialogue}</Paragraph>
+          <Paragraph>
+            {speakerName}: {newDialogue}
+          </Paragraph>
         </>
       );
     });
   };
 
-  const handleReply = (response) => {
-    let reply = response.data.choices[0].message.content;
+  const handleReply = (reply) => {
     const newDisposition = getDisposition(reply);
     setDisposition(newDisposition);
     reply = reply.replace(`[${newDisposition}]`, "");
@@ -46,7 +44,7 @@ const Chatbot = () => {
         content: reply,
       },
     ]);
-    addToDialogue(reply);
+    addToDialogue(reply, "Guard");
   };
 
   const getDisposition = (replyString) => {
@@ -64,15 +62,15 @@ const Chatbot = () => {
 
   async function sendMessage() {
     setLoading(true);
+    if (prompt) addToDialogue(prompt, "Courier");
     try {
-      const response = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages,
-      });
-      handleReply(response);
-    } catch (e) {
-      console.log(e);
-      alert("Something is going wrong, Please try again.");
+      const functions = getFunctions(firebaseApp);
+      const sendMessagesFunction = httpsCallable(functions, "sendMessages");
+      const response = await sendMessagesFunction({ messages });
+      // console.log(response.data.message);
+      handleReply(response.data.message);
+    } catch (error) {
+      console.log(error);
     }
     setLoading(false);
   }
@@ -101,23 +99,29 @@ const Chatbot = () => {
     }
   };
 
+  const borderString = "border-double border-[4px] border-black";
+
   return (
     <div
-      className="grid max-h-full h-full max-w-4xl max-h-[22rem]"
+      className={`grid max-h-full h-full max-w-4xl max-h-[22rem] ${borderString}`}
       style={{
         gridTemplateColumns: "minmax(50%, 1fr) minmax(50%, 1fr)",
         gridAutoRows: "minmax(0, max-content)",
       }}
     >
-      <GuardFace {...{ disposition }} />
-      <div className="flex flex-col items-start text-left max-h-full overflow-y-scroll ml-2 mb-2">
+      <GuardFace {...{ disposition }} className={`${borderString}`} />
+      <div
+        className={`flex flex-col items-start text-left max-h-full overflow-y-scroll ${borderString}`}
+      >
         {dialogue}
       </div>
-      <h3 className="text-3xl flex justify-center items-center">
-        <span className="font-['Heritage-Display']">Disposition:&nbsp;</span>
-        <span className="font-['Heritage-Display']">{disposition}</span>
+      <h3
+        className={`text-3xl flex justify-center items-center ${borderString}`}
+      >
+        <span className="">Disposition:&nbsp;</span>
+        <span className="">{disposition}</span>
       </h3>
-      <form onSubmit={handleSubmit} className="flex h-15">
+      <form onSubmit={handleSubmit} className={`flex h-15 p-1 ${borderString}`}>
         <div className="border-double border-4 border-black bg-white w-full m-0">
           <textarea
             onKeyDown={textAreaEnterPress}

@@ -10,7 +10,7 @@ import castle1 from "images/castle/1.jpg";
 import guards1 from "images/guards/1.jpg";
 
 function App() {
-  const [screenID, setScreenID] = useState(0);
+  const [screenID, setScreenID] = useState(4);
   let currentScreen = null;
   switch (screenID) {
     default:
@@ -29,8 +29,8 @@ function App() {
           You are a courier who has been given a contract by the local guild to
           deliver a letter to the king. The contents of which you have no idea,
           but you are under strict orders not to open it. The guild master
-          reiterates the utmost urgency it is placed in the king's, and only the
-          king's, hands before depart on your journey.
+          reiterates the utmost urgency it is placed in the king's (and only the
+          king's) hands before depart on your journey.
         </BackStory>
       );
       break;
@@ -42,8 +42,10 @@ function App() {
           you by the royal scribe. As the weeks pass you grow weary and doubt
           begins to plague your mind. Many times you become lost, and it becomes
           apparent that you might never make the journey. Just as hope starts to
-          wane you finally see the castle emerge on the horizon. You follow the
-          trail that leads up to the entrance.
+          wane you finally see the castle emerge on the horizon.
+          <br />
+          <br />
+          You follow the trail that leads up to the entrance.
         </BackStory>
       );
       break;
@@ -80,7 +82,7 @@ function App() {
               }
             : null
         }
-        className="max-h-[75%] max-w-[75%] border-double border-8 border-black bg-white flex items-center	justify-center flex-col p-4 box-content"
+        className="max-h-[75%] max-w-[75%] border-double border-8 border-black bg-white flex items-center	justify-center flex-col box-content"
       >
         {currentScreen}
       </div>

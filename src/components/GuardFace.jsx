@@ -6,7 +6,7 @@ import face_a3 from "images/faces/a3.jpg";
 import face_a4 from "images/faces/a4.jpg";
 import face_a5 from "images/faces/a5.jpg";
 
-const GuardFace = ({ disposition }) => {
+const GuardFace = ({ className, disposition }) => {
   let currentFace = null;
   if (disposition < 20) currentFace = face_a1;
   else if (disposition < 40) currentFace = face_a2;
@@ -17,7 +17,7 @@ const GuardFace = ({ disposition }) => {
     <img
       src={currentFace}
       alt="castle"
-      className="h-full mx-auto object-contain"
+      className={`h-full mx-auto object-contain ${className}`}
     />
   );
 };

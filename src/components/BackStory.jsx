@@ -10,11 +10,15 @@ const BackStory = ({ children, image, screenID, setScreenID }) => {
         gridAutoRows: "minmax(0, max-content)",
       }}
     >
-      <img src={image} alt="castle" className="max-h-full m-auto" />
-      <Paragraph className="h-full overflow-y-scroll mx-auto">
+      <img
+        src={image}
+        alt="castle"
+        className="max-h-full m-auto w-full border-double border-b-[6px] border-black"
+      />
+      <Paragraph className="h-full overflow-y-scroll mx-auto p-2">
         {children}
       </Paragraph>
-      <NavButtons className="mx-auto" {...{ screenID, setScreenID }} />
+      <NavButtons className="mx-auto mb-4" {...{ screenID, setScreenID }} />
     </div>
   );
 };

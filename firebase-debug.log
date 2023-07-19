@@ -1,0 +1,18 @@
+[debug] [2023-07-19T15:59:09.532Z] ----------------------------------------------------------------------
+[debug] [2023-07-19T15:59:09.534Z] Command:       /usr/local/bin/node /usr/local/bin/firebase functions:log
+[debug] [2023-07-19T15:59:09.535Z] CLI Version:   12.4.4
+[debug] [2023-07-19T15:59:09.535Z] Platform:      linux
+[debug] [2023-07-19T15:59:09.536Z] Node Version:  v16.13.1
+[debug] [2023-07-19T15:59:09.536Z] Time:          Wed Jul 19 2023 12:59:09 GMT-0300 (Argentina Standard Time)
+[debug] [2023-07-19T15:59:09.536Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-07-19T15:59:09.633Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-07-19T15:59:09.634Z] > authorizing via signed-in user (hello@smorgan.dev)
+[debug] [2023-07-19T15:59:09.634Z] [iam] checking project palace-guard for permissions ["firebase.projects.get","logging.logEntries.list","logging.logs.list"]
+[debug] [2023-07-19T15:59:09.636Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/palace-guard:testIamPermissions [none]
+[debug] [2023-07-19T15:59:09.637Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/palace-guard:testIamPermissions x-goog-quota-user=projects/palace-guard
+[debug] [2023-07-19T15:59:09.637Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/palace-guard:testIamPermissions {"permissions":["firebase.projects.get","logging.logEntries.list","logging.logs.list"]}
+[debug] [2023-07-19T15:59:10.577Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/palace-guard:testIamPermissions 200
+[debug] [2023-07-19T15:59:10.578Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/palace-guard:testIamPermissions {"permissions":["firebase.projects.get","logging.logEntries.list","logging.logs.list"]}
+[debug] [2023-07-19T15:59:10.579Z] >>> [apiv2][query] POST https://logging.googleapis.com/v2/entries:list [none]
+[debug] [2023-07-19T15:59:10.579Z] >>> [apiv2][body] POST https://logging.googleapis.com/v2/entries:list {"resourceNames":["projects/palace-guard"],"filter":"resource.type=\"cloud_function\" OR (resource.type=\"cloud_run_revision\" AND labels.\"goog-managed-by\"=\"cloudfunctions\")","orderBy":"timestamp desc","pageSize":35}
