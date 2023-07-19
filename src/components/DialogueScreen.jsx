@@ -111,7 +111,7 @@ const DialogueScreen = () => {
     >
       <GuardFace {...{ disposition }} className={`${borderString}`} />
       <div
-        className={`flex flex-col items-start text-left max-h-full overflow-y-scroll ${borderString}`}
+        className={`flex flex-col items-start text-left max-h-full overflow-y-scroll px-2 ${borderString}`}
       >
         {dialogue}
       </div>
