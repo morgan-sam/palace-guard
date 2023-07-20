@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import Paragraph from "components/Paragraph";
+import { useState, useEffect, useRef } from "react";
+import Dialogue from "components/Dialogue";
 import Button from "components/Button";
 import { initialPrompt } from "data";
 import GuardFace from "components/GuardFace";
@@ -14,21 +14,15 @@ const Game = () => {
   const [messages, setMessages] = useState([
     { role: "system", content: initialPrompt },
   ]);
-  const [dialogue, setDialogue] = useState(null);
   const [disposition, setDisposition] = useState(50);
   const [loading, setLoading] = useState(false);
+  const [dialogue, setDialogue] = useState([]);
 
   const addToDialogue = (newDialogue, speakerName) => {
-    setDialogue((prev) => {
-      return (
-        <>
-          {prev}
-          <Paragraph>
-            {speakerName}: {newDialogue}
-          </Paragraph>
-        </>
-      );
-    });
+    setDialogue((prev) => [
+      ...prev,
+      <Dialogue {...{ newDialogue, speakerName }} />,
+    ]);
   };
 
   const handleReply = (reply) => {
@@ -108,9 +102,10 @@ const Game = () => {
     >
       <GuardFace {...{ disposition }} className={`${borderString}`} />
       <div
+        id="dialogue-container"
         className={`flex flex-col items-start text-left max-h-full overflow-y-scroll px-2 ${borderString}`}
       >
-        {dialogue}
+        {dialogue.map((dialogueElement) => dialogueElement)}
       </div>
       <Disposition
         {...{ disposition }}
