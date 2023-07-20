@@ -101,11 +101,10 @@ const Game = () => {
 
   return (
     <div
-      className={`grid max-h-full h-full max-w-4xl max-h-[22rem] ${borderString}`}
-      style={{
-        gridTemplateColumns: "minmax(50%, 1fr) minmax(50%, 1fr)",
-        gridAutoRows: "minmax(0, max-content)",
-      }}
+      className={`grid max-h-full h-full max-w-sm md:max-w-4xl max-h-[22rem] 
+      grid-cols-[1fr] grid-rows-[1fr_auto_1fr_1fr]
+      md:grid-cols-[minmax(50%,_1fr)_minmax(50%,_1fr)] grid-rows-[1fr_auto]
+      ${borderString}`}
     >
       <GuardFace {...{ disposition }} className={`${borderString}`} />
       <div

@@ -10,7 +10,7 @@ import castle1 from "images/castle/1.jpg";
 import guards1 from "images/guards/1.jpg";
 
 function App() {
-  const [screenID, setScreenID] = useState(4);
+  const [screenID, setScreenID] = useState(0);
   let currentScreen = null;
   switch (screenID) {
     default:
@@ -18,7 +18,7 @@ function App() {
       currentScreen = (
         <>
           <img src={emblem} alt="castle" className="h-1/2 mx-auto" />
-          <h1>Palace Guard</h1>
+          <h1 className="p-8 text-6xl md:text-8xl">Palace Guard</h1>
           <NavButtons {...{ screenID, setScreenID }} />
         </>
       );
