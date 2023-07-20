@@ -19,3 +19,9 @@ This allows the pixelation to be visible to gave it the style of an early mac ga
 I used the following ImageMagick command to achieve this (scale values were changed as per image):
 
 `convert "$file" -colorspace gray -scale 50% -ordered-dither o8x8 -scale 200%`
+
+# 𝔉𝖔𝔫𝖙𝔰
+
+Alkhemikal: https://fontenddev.com/fonts/alkhemikal/
+
+Heritage: https://schrier.xyz/Heritage
