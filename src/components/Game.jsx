@@ -102,7 +102,7 @@ const Game = () => {
   return (
     <div
       className={`grid max-h-full h-full max-w-sm md:max-w-4xl max-h-[22rem] 
-      grid-cols-[1fr] grid-rows-[1fr_auto_1fr_1fr]
+      grid-cols-[1fr] grid-rows-[1fr_1fr_auto_auto]
       md:grid-cols-[minmax(50%,_1fr)_minmax(50%,_1fr)] md:grid-rows-[1fr_auto]
       ${borderString}`}
     >
