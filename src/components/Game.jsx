@@ -21,7 +21,10 @@ const Game = () => {
   const addToDialogue = (newDialogue, speakerName) => {
     setDialogue((prev) => [
       ...prev,
-      <Dialogue {...{ newDialogue, speakerName, setReplying }} />,
+      <Dialogue
+        key={prev.length + 1}
+        {...{ newDialogue, speakerName, setReplying }}
+      />,
     ]);
   };
 
