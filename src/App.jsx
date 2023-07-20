@@ -10,7 +10,7 @@ import castle1 from "images/castle/1.jpg";
 import guards1 from "images/guards/1.jpg";
 
 function App() {
-  const [screenID, setScreenID] = useState(4);
+  const [screenID, setScreenID] = useState(0);
   let currentScreen = null;
   switch (screenID) {
     default:
