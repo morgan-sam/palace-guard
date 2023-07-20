@@ -10,7 +10,7 @@ Play here: https://palace-guard.web.app/
 
 # 𝔄𝔟𝔬𝔲𝔱
 
-The game is heavily inspired by the 1bit art style of WORLD OF HORROR, The Return of the Obra Dinn, etc.
+The game art style is heavily inspired by the 1bit style of WORLD OF HORROR, The Return of the Obra Dinn, etc.
 
 Most of the assets were generated on OpenArt and similar generators.
 The low res style was achieved by scaling the image down, dithering it, then resizing it back to full size.
