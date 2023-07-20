@@ -15,13 +15,13 @@ const Game = () => {
     { role: "system", content: initialPrompt },
   ]);
   const [disposition, setDisposition] = useState(50);
-  const [loading, setLoading] = useState(false);
+  const [replying, setReplying] = useState(false);
   const [dialogue, setDialogue] = useState([]);
 
   const addToDialogue = (newDialogue, speakerName) => {
     setDialogue((prev) => [
       ...prev,
-      <Dialogue {...{ newDialogue, speakerName }} />,
+      <Dialogue {...{ newDialogue, speakerName, setReplying }} />,
     ]);
   };
 
@@ -53,7 +53,7 @@ const Game = () => {
   };
 
   async function sendMessage() {
-    setLoading(true);
+    setReplying(true);
     if (prompt) addToDialogue(prompt, "Courier");
     try {
       const functions = getFunctions(firebaseApp);
@@ -64,7 +64,6 @@ const Game = () => {
     } catch (error) {
       console.log(error);
     }
-    setLoading(false);
   }
 
   useEffect(() => {
@@ -119,17 +118,17 @@ const Game = () => {
             className="border-double border-4 border-black bg-white w-full h-full p-1 leading-3 m-0 disabled:bg-gray-200 disabled:cursor-not-allowed"
             type="text"
             value={prompt}
-            placeholder={loading ? "" : "Enter your dialogue here."}
+            placeholder={replying ? "" : "Enter your dialogue here."}
             onChange={(e) => setPrompt(e.target.value)}
-            disabled={loading}
+            disabled={replying}
           ></textarea>
         </div>
         <div className="border-double border-4 border-black bg-white w-fit h-fit">
           <Button
             className="w-24	disabled:bg-gray-200 disabled:cursor-not-allowed"
-            disabled={loading}
+            disabled={replying}
             type="submit"
-            text={loading ? <IntervalString /> : "Speak"}
+            text={replying ? <IntervalString /> : "Speak"}
           />
         </div>
       </form>

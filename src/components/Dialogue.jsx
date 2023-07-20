@@ -1,11 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
-const Dialogue = ({
-  className,
-  newDialogue,
-  speakerName,
-  dialogueContainerRef,
-}) => {
+const Dialogue = ({ className, newDialogue, speakerName, setReplying }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [userScrolled, setUserScrolled] = useState(false);
 
@@ -14,6 +9,8 @@ const Dialogue = ({
     dialogueArray.forEach((letter, index) => {
       setTimeout(() => {
         setDisplayedText((prev) => `${prev}${letter}`);
+        if (index === dialogueArray.length - 1 && speakerName === "Guard")
+          setReplying(false);
       }, 30 * index);
     });
   }, []);
@@ -40,7 +37,6 @@ const Dialogue = ({
   };
 
   useEffect(() => {
-    console.log(userScrolled);
     scrollToBottom();
   }, [displayedText]);
 
