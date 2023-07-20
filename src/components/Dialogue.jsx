@@ -23,8 +23,10 @@ const Dialogue = ({
   useEffect(() => {
     const dialogueContainer = document.querySelector("#dialogue-container");
     dialogueContainer.addEventListener("wheel", onUserScroll);
+    dialogueContainer.addEventListener("touchmove", onUserScroll);
     return () => {
       dialogueContainer.removeEventListener("wheel", onUserScroll);
+      dialogueContainer.removeEventListener("touchmove", onUserScroll);
     };
   }, []);
 
@@ -33,7 +35,6 @@ const Dialogue = ({
     if (!userScrolled) {
       document.querySelector("#dialogue-container").scrollTo({
         top: document.querySelector("#dialogue-container").scrollHeight,
-        behavior: "smooth",
       });
     }
   };
