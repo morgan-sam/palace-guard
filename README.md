@@ -20,7 +20,7 @@ I used the following ImageMagick command to achieve this (scale values were chan
 
 `convert "$file" -colorspace gray -scale 50% -ordered-dither o8x8 -scale 200%`
 
-# 𝔉𝖔𝔫𝖙𝔰
+# 𝔉𝔬𝔫𝔱𝔰
 
 Alkhemikal: https://fontenddev.com/fonts/alkhemikal/
 
