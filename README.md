@@ -14,7 +14,7 @@ The game art style is heavily inspired by the 1bit style of WORLD OF HORROR, The
 
 Most of the assets were generated on OpenArt and similar generators.
 The low res style was achieved by scaling the image down, dithering it, then resizing it back to full size.
-This allows the pixelation to be visible to gave it the style of an early mac game. 
+This allows the pixelation to be visible to give it the style of an early mac game. 
 
 I used the following ImageMagick command to achieve this (scale values were changed as per image):
 
