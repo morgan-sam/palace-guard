@@ -4,15 +4,22 @@ const Dialogue = ({ className, newDialogue, speakerName, setReplying }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [userScrolled, setUserScrolled] = useState(false);
 
-  useEffect(() => {
+  const typeOutGuardReply = (newDialogue) => {
     const dialogueArray = newDialogue.split("");
     dialogueArray.forEach((letter, index) => {
       setTimeout(() => {
         setDisplayedText((prev) => `${prev}${letter}`);
-        if (index === dialogueArray.length - 1 && speakerName === "Guard")
-          setReplying(false);
+        if (index === dialogueArray.length - 1) setReplying(false);
       }, 30 * index);
     });
+  };
+
+  useEffect(() => {
+    if (speakerName === "Courier") {
+      setDisplayedText(newDialogue);
+    } else {
+      typeOutGuardReply(newDialogue);
+    }
   }, []);
 
   const onUserScroll = () => setUserScrolled(true);
