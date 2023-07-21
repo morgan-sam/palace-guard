@@ -31,7 +31,7 @@ const Game = () => {
   const handleReply = (reply) => {
     const newDisposition = getDisposition(reply);
     setDisposition(newDisposition);
-    reply = reply.replace(`[${newDisposition}]`, "");
+    reply = reply.replace(`[Disposition: ${newDisposition}]`, "").trim();
     setMessages((prev) => [
       ...prev,
       {
@@ -43,16 +43,14 @@ const Game = () => {
   };
 
   const getDisposition = (replyString) => {
-    const regex = /\[(\d+)\]/g;
-    let newDisposition = replyString.match(regex)?.[0];
-    if (newDisposition) {
-      // Manipulate the extracted value
-      newDisposition = newDisposition.replace("[", "").replace("]", "");
+    const regex = /\[Disposition:\s*(\d+)\]/;
+    const match = replyString.match(regex);
+    if (match && match[1]) {
+      return parseInt(match[1]);
     } else {
-      // If extraction fails or value not found, use the old disposition value
-      newDisposition = disposition;
+      // return old disposition if it fails
+      return disposition;
     }
-    return newDisposition;
   };
 
   async function sendMessage() {
