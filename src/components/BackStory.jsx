@@ -4,11 +4,13 @@ import Paragraph from "components/Paragraph";
 const BackStory = ({ children, image, screenID, setScreenID }) => {
   return (
     <div className="grid w-full h-full gap-y-2 max-w-xl grid-rows-[minmax(30%,_auto)_auto_auto]">
-      <img
-        src={image}
-        alt="castle"
-        className="max-h-full m-auto w-full border-double border-b-[6px] border-black"
-      />
+      <div>
+        <img
+          src={image}
+          alt="castle"
+          className="max-h-full m-auto w-full border-double border-b-[6px] border-black"
+        />
+      </div>
       <Paragraph className="h-full overflow-y-scroll mx-auto p-2">
         {children}
       </Paragraph>
