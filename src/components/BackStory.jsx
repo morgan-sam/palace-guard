@@ -3,7 +3,7 @@ import Paragraph from "components/Paragraph";
 
 const BackStory = ({ children, image, screenID, setScreenID }) => {
   return (
-    <div className="grid w-full h-full gap-y-2 max-w-xl grid-rows-[minmax(40%,_1fr)_auto_auto]">
+    <div className="grid w-full h-full gap-y-2 max-w-xl grid-rows-[minmax(30%,_auto)_auto_auto]">
       <img
         src={image}
         alt="castle"
