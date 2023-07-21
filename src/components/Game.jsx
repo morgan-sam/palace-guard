@@ -50,7 +50,6 @@ const Game = ({ setScreenID }) => {
       const functions = getFunctions(firebaseApp);
       const sendMessagesFunction = httpsCallable(functions, "sendMessages");
       const response = await sendMessagesFunction({ messages });
-      // console.log(response.data.message);
       handleReply(response.data.message);
     } catch (error) {
       console.log(error);
