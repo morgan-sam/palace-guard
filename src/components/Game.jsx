@@ -121,7 +121,7 @@ const Game = ({ setScreenID }) => {
           <div className="border-double border-4 border-black bg-white w-fit h-fit">
             <Button
               className="w-24	disabled:bg-gray-200 disabled:cursor-not-allowed"
-              disabled={replying}
+              disabled={replying || prompt === ""}
               type="submit"
               text={replying ? <IntervalString /> : "Speak"}
             />
