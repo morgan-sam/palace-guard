@@ -1,6 +1,7 @@
 import "App.css";
 import BackStory from "components/BackStory";
 import Game from "components/Game";
+import Button from "components/Button";
 import NavButtons from "components/NavButtons";
 import { useState } from "react";
 import pattern from "images/pattern/1.jpg";
@@ -63,7 +64,31 @@ function App() {
     case 4:
       currentScreen = (
         <>
-          <Game />
+          <Game {...{ setScreenID }} />
+        </>
+      );
+      break;
+    case "lose":
+      currentScreen = (
+        <>
+          <h1 className="p-8 text-6xl md:text-8xl">You Lose!</h1>
+          <Button
+            className="mx-auto mb-4"
+            onClick={() => setScreenID(0)}
+            text={"Game Over"}
+          ></Button>
+        </>
+      );
+      break;
+    case "win":
+      currentScreen = (
+        <>
+          <h1 className="p-8 text-6xl md:text-8xl">You Win!</h1>
+          <Button
+            className="mx-auto mb-4"
+            onClick={() => setScreenID(0)}
+            text={"Game Over"}
+          ></Button>
         </>
       );
       break;

@@ -9,7 +9,7 @@ import Disposition from "components/Disposition";
 import firebaseApp from "config/firebase";
 import { getFunctions, httpsCallable } from "firebase/functions";
 
-const Game = () => {
+const Game = ({ setScreenID }) => {
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([
     { role: "system", content: initialPrompt },
@@ -17,6 +17,7 @@ const Game = () => {
   const [disposition, setDisposition] = useState(50);
   const [replying, setReplying] = useState(false);
   const [dialogue, setDialogue] = useState([]);
+  const [gameState, setGameState] = useState("playing");
 
   const addToDialogue = (newDialogue, speakerName) => {
     setDialogue((prev) => [
@@ -29,9 +30,10 @@ const Game = () => {
   };
 
   const handleReply = (reply) => {
-    const newDisposition = getDisposition(reply);
-    setDisposition(newDisposition);
-    reply = reply.replace(`[Disposition: ${newDisposition}]`, "").trim();
+    const { speaker, message, disposition, state } = JSON.parse(reply);
+    setDisposition(disposition);
+    setGameState(state);
+    addToDialogue(message, speaker);
     setMessages((prev) => [
       ...prev,
       {
@@ -39,18 +41,6 @@ const Game = () => {
         content: reply,
       },
     ]);
-    addToDialogue(reply, "Guard");
-  };
-
-  const getDisposition = (replyString) => {
-    const regex = /\[Disposition:\s*(\d+)\]/;
-    const match = replyString.match(regex);
-    if (match && match[1]) {
-      return parseInt(match[1]);
-    } else {
-      // return old disposition if it fails
-      return disposition;
-    }
   };
 
   async function sendMessage() {
@@ -111,28 +101,42 @@ const Game = () => {
         {...{ disposition }}
         className={`text-3xl flex justify-center items-center ${borderString}`}
       />
-      <form onSubmit={handleSubmit} className={`flex h-15 p-1 ${borderString}`}>
-        <div className="border-double border-4 border-black bg-white w-full m-0">
-          <textarea
-            onKeyDown={textAreaEnterPress}
-            style={{ resize: "none" }}
-            className="border-double border-4 border-black bg-white w-full h-full p-1 leading-3 m-0 disabled:bg-gray-200 disabled:cursor-not-allowed"
-            type="text"
-            value={prompt}
-            placeholder={replying ? "" : "Enter your dialogue here."}
-            onChange={(e) => setPrompt(e.target.value)}
-            disabled={replying}
-          ></textarea>
-        </div>
-        <div className="border-double border-4 border-black bg-white w-fit h-fit">
+      {gameState === "playing" ? (
+        <form
+          onSubmit={handleSubmit}
+          className={`flex h-15 p-1 ${borderString}`}
+        >
+          <div className="border-double border-4 border-black bg-white w-full m-0">
+            <textarea
+              onKeyDown={textAreaEnterPress}
+              style={{ resize: "none" }}
+              className="border-double border-4 border-black bg-white w-full h-full p-1 leading-3 m-0 disabled:bg-gray-200 disabled:cursor-not-allowed"
+              type="text"
+              value={prompt}
+              placeholder={replying ? "" : "Enter your dialogue here."}
+              onChange={(e) => setPrompt(e.target.value)}
+              disabled={replying}
+            ></textarea>
+          </div>
+          <div className="border-double border-4 border-black bg-white w-fit h-fit">
+            <Button
+              className="w-24	disabled:bg-gray-200 disabled:cursor-not-allowed"
+              disabled={replying}
+              type="submit"
+              text={replying ? <IntervalString /> : "Speak"}
+            />
+          </div>
+        </form>
+      ) : (
+        <div className="m-auto border-double border-4 border-black bg-white w-fit h-fit">
           <Button
             className="w-24	disabled:bg-gray-200 disabled:cursor-not-allowed"
-            disabled={replying}
             type="submit"
-            text={replying ? <IntervalString /> : "Speak"}
+            text={"Next"}
+            onClick={() => setScreenID(gameState)}
           />
         </div>
-      </form>
+      )}
     </div>
   );
 };
