@@ -7,9 +7,10 @@ import pattern from "images/pattern.jpg";
 
 function App() {
   const [screenID, setScreenID] = useState(0);
+
   const [images, setImages] = useState({});
 
-  useEffect(() => {
+  const resetAllImages = () => {
     function importAll(r) {
       let images = {};
       r.keys().map((item, index) => {
@@ -22,7 +23,17 @@ function App() {
     );
     const newImages = getGameImages(imagesObject);
     setImages(newImages);
+  };
+
+  useEffect(() => {
+    resetAllImages();
   }, []);
+
+  useEffect(() => {
+    if (screenID === 0) {
+      resetAllImages();
+    }
+  }, [screenID]);
 
   return (
     <div className="App">
