@@ -1,3 +1,4 @@
+import Button from "components/Button";
 import NavButtons from "components/NavButtons";
 import Paragraph from "components/Paragraph";
 
@@ -14,7 +15,11 @@ const BackStory = ({ children, image, screenID, setScreenID }) => {
       <Paragraph className="h-full overflow-y-scroll mx-auto p-2">
         {children}
       </Paragraph>
-      <NavButtons className="mx-auto mb-4" {...{ screenID, setScreenID }} />
+      {Number.isInteger(screenID) ? (
+        <NavButtons className="mx-auto mb-4" {...{ screenID, setScreenID }} />
+      ) : (
+        <Button text={"Game Over"} onClick={() => setScreenID(0)} />
+      )}
     </div>
   );
 };

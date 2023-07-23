@@ -53,14 +53,17 @@ const CurrentScreen = ({ screenID, setScreenID, images }) => {
       return <Game {...{ setScreenID, images }} />;
     case "lose":
       return (
-        <>
+        <BackStory image={images["dungeon"]} {...{ screenID, setScreenID }}>
+          You are cast in the the castle dungeon where you spend the rest of
+          your days. Your diet consists of stale bread and other foul scraps,
+          your days consist of nothing.
+          <br />
+          <br />
+          You never find out what the contents of the letter were, although it
+          consumes your mind daily. That is, until the malnutrition starts to
+          atrophy your brain, and your conscience slowly fades to black.
           <h1 className="p-8 text-6xl md:text-8xl">You Lose!</h1>
-          <Button
-            className="mx-auto mb-4"
-            onClick={() => setScreenID(0)}
-            text={"Game Over"}
-          ></Button>
-        </>
+        </BackStory>
       );
     case "win":
       return (
