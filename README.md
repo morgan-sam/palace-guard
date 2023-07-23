@@ -33,6 +33,10 @@ The following ImageMagick command was used to achieve this (scale values were ch
 
 `convert "$file" -colorspace gray -scale 50% -ordered-dither o8x8 -scale 200%`
 
+# 𝔗𝔢𝔠𝔥 𝔖𝔱𝔞𝔠𝔨
+
+The game was built with React, OpenAI & Firebase Functions. Firebase was also used for hosting.
+
 # 𝔉𝔬𝔫𝔱𝔰
 
 Alkhemikal: https://fontenddev.com/fonts/alkhemikal/
