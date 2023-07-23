@@ -67,14 +67,34 @@ const CurrentScreen = ({ screenID, setScreenID, images }) => {
       );
     case "win":
       return (
-        <>
+        <BackStory image={images["king"]} {...{ screenID, setScreenID }}>
+          The guard ushers you through the gate into the courtyard, and are then
+          directed through a padlocked wooden door he unlocks. You walk along a
+          long, dark stone hallway. Eventually you reach an opening dimly lit by
+          two torches. You pass through...
+          <br />
+          <br />
+          As you enter the main hall of the castle and look around. Huge ornate
+          tapestries line the walls next to giant imposing pillars. The room is
+          entirely devoid of life, apart from a single shadowy figure sitting in
+          the giant throne at the end of the hall.
+          <br />
+          <br />
+          You walk up the the king in complete silence, except for your
+          footsteps reverberating around the room. As you get closer you here a
+          faint groaning noise coming from the figure. You walk closer...
+          <br />
+          <br />
+          As your draw in you realize the king is fast asleep in his throne,
+          quietly snoring. You pause for a moment, and consider if you should
+          wake him up. Remembering the guard's threats you decide against it and
+          instead tuck the letter in the cusp of his hands.
+          <br />
+          <br />
+          You hastily walk out of the castle and thank the guard on your way
+          out. You set back down the trail and disappear into the night.
           <h1 className="p-8 text-6xl md:text-8xl">You Win!</h1>
-          <Button
-            className="mx-auto mb-4"
-            onClick={() => setScreenID(0)}
-            text={"Game Over"}
-          ></Button>
-        </>
+        </BackStory>
       );
   }
 };
