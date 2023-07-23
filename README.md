@@ -10,13 +10,26 @@ Play here: https://palace-guard.web.app/
 
 # 𝔄𝔟𝔬𝔲𝔱
 
+The app basically acts as a UI wrapper to GPT. An original prompt (stored in `data.js`) is sent to the API to start the roleplay.
+After that the user input is sent and it returns a JSON response in the following format:
+
+`{ message, speaker, disposition, state}`
+
+This means all game logic is determined by GPT, which can lead to some unexpected results.
+
+All assets are pre-made/generated, only the text is generated.
+
+The disposition level determines which guard emotion image to use, the emotion image level ranging from 1-5. 
+
+# 𝔄𝔯𝔱 𝔖𝔱𝔶𝔩𝔢
+
 The game art style is heavily inspired by the 1bit style of WORLD OF HORROR, The Return of the Obra Dinn, etc.
 
 Most of the assets were generated on OpenArt and similar generators.
 The low res style was achieved by scaling the image down, dithering it, then resizing it back to full size.
 This allows the pixelation to be visible to give it the style of an early mac game. 
 
-I used the following ImageMagick command to achieve this (scale values were changed as per image):
+The following ImageMagick command was used to achieve this (scale values were changed as per image):
 
 `convert "$file" -colorspace gray -scale 50% -ordered-dither o8x8 -scale 200%`
 
