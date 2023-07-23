@@ -22,7 +22,6 @@ function App() {
     );
     const newImages = getGameImages(imagesObject);
     setImages(newImages);
-    console.log(newImages);
   }, []);
 
   return (
