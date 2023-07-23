@@ -22,3 +22,38 @@ The guard does not want to let me in. The guard should be suspicious of me, do n
 Once the disposition is 10 or below you throw the courier into the castle dungeon and set state to "lose". Once the disposition is 90 or above you allow the courier through the gates and end your comment with "win".
 
 `;
+
+const getGuardImages = (imageEntries) => {
+  const guardImages = imageEntries.filter(([key, value]) =>
+    key.startsWith("guard")
+  );
+  const randomGuard = parseInt(
+    Math.floor((Math.random() * guardImages.length) / 5) + 1
+  );
+  const specificGuardImages = imageEntries.filter(([key, value]) =>
+    key.startsWith("guard" + randomGuard)
+  );
+  return specificGuardImages.map((entry) => entry[1]);
+};
+
+export const getGameImages = (images) => {
+  const types = ["letter", "castle", "gates", "guard", "dungeon", "king"];
+  const imagesObject = types.reduce((acc, type) => {
+    const imageEntries = Object.entries(images);
+
+    if (type == "guard") {
+      const guardImages = getGuardImages(imageEntries);
+      acc[type] = guardImages;
+    } else {
+      const matchingImages = imageEntries.filter(([key, value]) =>
+        key.startsWith(type)
+      );
+      const randomIndex = Math.floor(Math.random() * matchingImages.length);
+      const image = matchingImages[randomIndex]?.[1];
+      if (image) acc[type] = image;
+    }
+    return acc;
+  }, {});
+
+  return imagesObject;
+};

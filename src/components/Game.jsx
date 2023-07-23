@@ -9,7 +9,7 @@ import Disposition from "components/Disposition";
 import firebaseApp from "config/firebase";
 import { getFunctions, httpsCallable } from "firebase/functions";
 
-const Game = ({ setScreenID }) => {
+const Game = ({ setScreenID, images }) => {
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([
     { role: "system", content: initialPrompt },
@@ -89,7 +89,7 @@ const Game = ({ setScreenID }) => {
       md:grid-cols-[minmax(50%,_1fr)_minmax(50%,_1fr)] md:grid-rows-[1fr_auto]
       ${borderString}`}
     >
-      <GuardFace {...{ disposition }} className={`${borderString}`} />
+      <GuardFace {...{ disposition, images }} className={`${borderString}`} />
       <div
         id="dialogue-container"
         className={`flex flex-col items-start text-left max-h-full overflow-y-scroll px-2 ${borderString}`}

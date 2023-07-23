@@ -1,18 +1,10 @@
-import { useState } from "react";
-
-import face_a1 from "images/faces/a1.jpg";
-import face_a2 from "images/faces/a2.jpg";
-import face_a3 from "images/faces/a3.jpg";
-import face_a4 from "images/faces/a4.jpg";
-import face_a5 from "images/faces/a5.jpg";
-
-const GuardFace = ({ className, disposition }) => {
-  let currentFace = null;
-  if (disposition < 20) currentFace = face_a1;
-  else if (disposition < 40) currentFace = face_a2;
-  else if (disposition < 60) currentFace = face_a3;
-  else if (disposition < 80) currentFace = face_a4;
-  else currentFace = face_a5;
+const GuardFace = ({ className, disposition, images }) => {
+  let currentFace = images["guard"][2];
+  if (disposition < 20) currentFace = images["guard"][0];
+  else if (disposition < 40) currentFace = images["guard"][1];
+  else if (disposition < 60) currentFace = images["guard"][2];
+  else if (disposition < 80) currentFace = images["guard"][3];
+  else currentFace = images["guard"][4];
   return (
     <img
       src={currentFace}
