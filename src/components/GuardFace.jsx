@@ -9,7 +9,7 @@ const GuardFace = ({ className, disposition, images }) => {
     <img
       src={currentFace}
       alt="castle"
-      className={`max-h-80 md:max-h-full h-auto mx-auto object-contain ${className}`}
+      className={`max-h-80 md:max-h-full h-auto w-full mx-auto object-contain ${className}`}
     />
   );
 };
