@@ -15,7 +15,7 @@ After that the user input is sent and it returns a JSON response in the followin
 
 `{ message, speaker, disposition, state}`
 
-This means all game logic is determined by GPT, which can lead to some unexpected results.
+This means all game logic is determined by GPT, which can lead to some unexpected results. GPT decides how the guard replies, what his current disposition level is, and what the current game state is (playing/lose/win).
 
 All assets are pre-made/generated, only the text is generated.
 
