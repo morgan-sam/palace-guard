@@ -62,7 +62,9 @@ const CurrentScreen = ({ screenID, setScreenID, images }) => {
           You never find out what the contents of the letter were, although it
           consumes your mind daily. That is, until the malnutrition starts to
           atrophy your brain, and your conscience slowly fades to black.
-          <h1 className="p-8 text-6xl md:text-8xl">You Lose!</h1>
+          <h3 className="font-[Heritage-Display] p-8 text-6xl md:text-8xl">
+            You Lose!
+          </h3>
         </Story>
       );
     case "win":
@@ -93,7 +95,9 @@ const CurrentScreen = ({ screenID, setScreenID, images }) => {
           <br />
           You hastily walk out of the castle and thank the guard on your way
           out. You set back down the trail and disappear into the night.
-          <h1 className="p-8 text-6xl md:text-8xl">You Win!</h1>
+          <h3 className="font-[Heritage-Display] p-8 text-6xl md:text-8xl">
+            You Win!
+          </h3>
         </Story>
       );
   }
