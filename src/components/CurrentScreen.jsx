@@ -1,4 +1,4 @@
-import BackStory from "components/BackStory";
+import Story from "components/Story";
 import Game from "components/Game";
 import Button from "components/Button";
 import NavButtons from "components/NavButtons";
@@ -17,17 +17,17 @@ const CurrentScreen = ({ screenID, setScreenID, images }) => {
       );
     case 1:
       return (
-        <BackStory image={images["letter"]} {...{ screenID, setScreenID }}>
+        <Story image={images["letter"]} {...{ screenID, setScreenID }}>
           You are a courier who has been given a contract by the local guild to
           deliver a letter to the king. The contents of which you have no idea,
           but you are under strict orders not to open it. The guild master
           reiterates the utmost urgency it is placed in the king's (and only the
           king's) hands before depart on your journey.
-        </BackStory>
+        </Story>
       );
     case 2:
       return (
-        <BackStory image={images["castle"]} {...{ screenID, setScreenID }}>
+        <Story image={images["castle"]} {...{ screenID, setScreenID }}>
           You set out on your travels optimistic, enthusiastic for your royal
           duties. The journey is a treacherous one, following the map given to
           you by the royal scribe. As the weeks pass you grow weary and doubt
@@ -37,23 +37,23 @@ const CurrentScreen = ({ screenID, setScreenID, images }) => {
           <br />
           <br />
           You follow the trail that leads up to the entrance.
-        </BackStory>
+        </Story>
       );
     case 3:
       return (
-        <BackStory image={images["gates"]} {...{ screenID, setScreenID }}>
+        <Story image={images["gates"]} {...{ screenID, setScreenID }}>
           As you approach the gates you see several guards standing watch. They
           eye you suspiciously. You walk carefully towards them, not to agitate
           them. Several archers line the walls with weapons drawn. You raise
           your hands to show yourself as a non-threat. One of the guards walks
           towards you and begins to speak...
-        </BackStory>
+        </Story>
       );
     case 4:
       return <Game {...{ setScreenID, images }} />;
     case "lose":
       return (
-        <BackStory image={images["dungeon"]} {...{ screenID, setScreenID }}>
+        <Story image={images["dungeon"]} {...{ screenID, setScreenID }}>
           You are cast in the the castle dungeon where you spend the rest of
           your days. Your diet consists of stale bread and other foul scraps,
           your days consist of nothing.
@@ -63,11 +63,11 @@ const CurrentScreen = ({ screenID, setScreenID, images }) => {
           consumes your mind daily. That is, until the malnutrition starts to
           atrophy your brain, and your conscience slowly fades to black.
           <h1 className="p-8 text-6xl md:text-8xl">You Lose!</h1>
-        </BackStory>
+        </Story>
       );
     case "win":
       return (
-        <BackStory image={images["king"]} {...{ screenID, setScreenID }}>
+        <Story image={images["king"]} {...{ screenID, setScreenID }}>
           The guard ushers you through the gate into the courtyard, and are then
           directed through a padlocked wooden door he unlocks. You walk along a
           long, dark stone hallway. Eventually you reach an opening dimly lit by
@@ -94,7 +94,7 @@ const CurrentScreen = ({ screenID, setScreenID, images }) => {
           You hastily walk out of the castle and thank the guard on your way
           out. You set back down the trail and disappear into the night.
           <h1 className="p-8 text-6xl md:text-8xl">You Win!</h1>
-        </BackStory>
+        </Story>
       );
   }
 };
